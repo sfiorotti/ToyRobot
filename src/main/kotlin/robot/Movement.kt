@@ -1,5 +1,3 @@
 package robot
 
-class Movement() {
-
-}
+class Movement(val x: Int, val y: Int, val guidance: String)
