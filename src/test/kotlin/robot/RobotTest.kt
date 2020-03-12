@@ -8,15 +8,30 @@ class RobotTest {
     private val robot = Robot(board)
 
     @Test fun `should movements is null`() {
-        assertEquals(robot.moves.size, 0)
+        assertEquals(0, robot.moves.size)
     }
 
-    @Test fun `should walk return true`() {
-        assertTrue(robot.walk())
+    @Test fun `should increment movements count`(){
+        val movement = Movement(2, 1, "NORTH")
+        robot.place(movement)
+
+        assertEquals(1, robot.moves.size)
     }
 
-    @Test fun `should turnRight return true`() {
-        assertTrue(robot.turnRight())
+    @Test fun `should change position after walk`(){
+        val movement = Movement(2, 1, "NORTH")
+        robot.place(movement)
+
+        assertEquals(2, robot.walk().y)
+        assertEquals(2, robot.moves.size)
+    }
+
+    @Test fun `should turnRight return guidance`() {
+        val movement = Movement(2, 1, "NORTH")
+        robot.place(movement)
+
+        assertEquals("EAST", robot.turnRight().guidance)
+        assertEquals(2, robot.moves.size)
     }
 
     @Test fun `should turnLeft return true`() {
